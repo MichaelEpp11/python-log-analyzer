@@ -23,3 +23,5 @@ Any IP address with 3 or more failed login attempts is flagged as a potential br
 - How to parse log files with Python
 - How brute-force detection works
 - How security automation can support incident detection
+## Example Output
+![Log Analyzer Output](screenshot.png)
