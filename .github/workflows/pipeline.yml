@@ -1,0 +1,19 @@
+name: Run Python Log Analyzer
+
+on: [push]
+
+jobs:
+  run-analyzer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run log analyzer
+        run: python3 analyzer.py
