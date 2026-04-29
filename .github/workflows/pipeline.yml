@@ -1,9 +1,9 @@
-name: Run Python Log Analyzer
+name: DevSecOps Pipeline
 
 on: [push]
 
 jobs:
-  run-analyzer:
+  security-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +15,11 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Run log analyzer
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Security Scan
+        run: bandit -r .
+
+      - name: Run Log Analyzer
         run: python3 analyzer.py
