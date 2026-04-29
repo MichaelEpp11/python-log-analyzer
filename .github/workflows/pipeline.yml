@@ -1,9 +1,9 @@
-name: DevSecOps Pipeline
+name: Full DevSecOps Pipeline
 
 on: [push]
 
 jobs:
-  security-check:
+  devsecops:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,11 +15,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Bandit
+      - name: Install Bandit Security Scanner
         run: pip install bandit
 
-      - name: Run Security Scan
+      - name: Run Python Security Scan
         run: bandit -r .
 
       - name: Run Log Analyzer
         run: python3 analyzer.py
+
+      - name: Build Docker Image
+        run: docker build -t python-log-analyzer .
+
+      - name: Run Docker Container
+        run: docker run python-log-analyzer
